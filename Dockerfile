@@ -1,4 +1,7 @@
-FROM httpd:2.4
-COPY ./public-html/ /usr/local/apache2/htdocs/
-COPY ./conf/ /usr/local/apache2/conf/
-
+FROM centos:latest
+RUN yum -y install httpd
+RUN yum -y install vim
+COPY html/index.html /var/www/html/
+COPY conf/httpd.conf /etc/httpd/conf/
+CMD ["/usr/sbin/httpd", "-D", "FOREGROUND"]
+EXPOSE 80
